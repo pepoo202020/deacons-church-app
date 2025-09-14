@@ -20,5 +20,5 @@ export default function Home() {
     return <LoaderComponent />;
   }
 
-  return <div>{String(t("title"))}</div>;
+  return <div className="flex-1 ">{String(t("title"))}</div>;
 }
