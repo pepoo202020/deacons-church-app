@@ -66,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} ${kufam.variable} ${cinzel.variable} ${lora.variable} ${roboto.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cairo.variable} ${kufam.variable} ${cinzel.variable} ${lora.variable} ${roboto.variable} antialiased dark:bg-blue-950 bg-blue-200`}
       >
         <Providers>{children}</Providers>
       </body>
