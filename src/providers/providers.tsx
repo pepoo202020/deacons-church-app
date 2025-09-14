@@ -2,6 +2,7 @@
 
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "./Therme-Provider/theme-provider";
+import { LanguageProvider } from "./Language-Provider/language-provider";
 
 interface IProvidersProps {
   children: React.ReactNode;
@@ -15,8 +16,10 @@ export function Providers({ children }: IProvidersProps) {
       enableSystem
       disableTransitionOnChange
     >
-      {children}
-      <Toaster richColors position="top-center" />
+      <LanguageProvider>
+        {children}
+        <Toaster richColors position="top-center" />
+      </LanguageProvider>
     </ThemeProvider>
   );
 }
