@@ -1,5 +1,6 @@
 "use client";
 
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "./Therme-Provider/theme-provider";
 
 interface IProvidersProps {
@@ -15,6 +16,7 @@ export function Providers({ children }: IProvidersProps) {
       disableTransitionOnChange
     >
       {children}
+      <Toaster richColors position="top-center" />
     </ThemeProvider>
   );
 }

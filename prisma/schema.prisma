@@ -11,5 +11,70 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_CONNECTION_URL")
+}
+
+// =========================== ENUMS ======================
+
+// ============================ MODELS =====================
+model ChurchSeason {
+  id String @id @default(cuid())
+
+  // Multi-language names
+  seasonName_ar String
+  seasonName_en String
+  seasonName_co String
+
+  // Visual styling
+  backgroundColor String
+  textColor       String
+  accentColor     String?
+
+  // Content
+  openingPhrase   String
+  description     String
+  longDescription String?
+
+  // Media
+  images         String[] @default([])
+  specialIcon    String?
+  bannerImage    String?
+  thumbnailImage String?
+
+  // Links and references
+  postLink      String?
+  externalLinks Json? // Store array of {title, url, description}
+
+  // Timing
+  startDate      DateTime
+  endDate        DateTime
+  isRecurring    Boolean  @default(false)
+  recurrenceRule String? // For recurring seasons
+
+  // Metadata
+  tags       String[] @default([])
+  isPublic   Boolean  @default(true)
+  isFeatured Boolean  @default(false)
+  sortOrder  Int      @default(0)
+
+  // SEO and sharing
+  slug            String  @unique
+  metaTitle       String?
+  metaDescription String?
+  socialImage     String?
+
+  // Analytics
+  viewCount    Int       @default(0)
+  lastViewedAt DateTime?
+
+  // Audit fields
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([startDate, endDate])
+  @@index([isPublic, isFeatured])
+  @@index([slug])
+  @@map("church_seasons")
 }
