@@ -11,6 +11,7 @@ import i18n from "i18next";
 import { useTranslation, initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { TLanguages } from "@/interfaces/interfaces";
+import { cn } from "@/lib/utils";
 
 interface ILanguageProviderProps {
   children: React.ReactNode;
@@ -28,6 +29,13 @@ interface ILanguageContextType {
 }
 
 const availableLanguages: TLanguages[] = ["ar", "en", "co"];
+
+// font mapping for each language
+const fontMapping: Record<TLanguages, string> = {
+  ar: "font-cairo",
+  en: "font-lora",
+  co: "font-coptic",
+};
 
 // Initialize i18n
 i18n
@@ -80,6 +88,13 @@ export function LanguageProvider({ children }: ILanguageProviderProps) {
         document.dir = isRTL ? "rtl" : "ltr";
         document.documentElement.lang = newLanguage;
 
+        // update font family on body
+        const body = document.body;
+        // remove all font classes
+        body.classList.remove("font-cairo", "font-lora", "font-coptic");
+        // add new font class
+        body.classList.add(fontMapping[newLanguage]);
+
         // Persist to localStorage
         localStorage.setItem("preferred-language", newLanguage);
       } catch (err) {
@@ -107,6 +122,10 @@ export function LanguageProvider({ children }: ILanguageProviderProps) {
         if (initialLanguage !== language) {
           await changeLanguage(initialLanguage);
         }
+        // Set initial font even if language doesn't change
+        const body = document.body;
+        body.classList.remove("font-cairo", "font-lora", "font-coptic");
+        body.classList.add(fontMapping[language]);
       } catch (err) {
         console.error("Language initialization error:", err);
         setError("Failed to initialize language");
@@ -120,6 +139,10 @@ export function LanguageProvider({ children }: ILanguageProviderProps) {
   useEffect(() => {
     document.dir = isRTL ? "rtl" : "ltr";
     document.documentElement.lang = language;
+    // Update font family
+    const body = document.body;
+    body.classList.remove("font-cairo", "font-lora", "font-coptic");
+    body.classList.add(fontMapping[language]);
   }, [language, isRTL]);
 
   // Enhanced translation function with error handling
