@@ -24,6 +24,22 @@ enum SeasonTones {
   HAZAINI
 }
 
+enum CopticMonths {
+  THOUT
+  PAOPI
+  HATHOR
+  KOIAK
+  TOBI
+  MESHIR
+  PAREMHAT
+  PAREMOUDE
+  PASHONS
+  PAONI
+  EPIP
+  MASORI
+  KOGIENAVOT
+}
+
 // ============================ MODELS =====================
 model ChurchSeason {
   id String @id @default(cuid())
@@ -86,4 +102,28 @@ model ChurchSeason {
   @@index([isPublic, isFeatured])
   @@index([slug])
   @@map("church_seasons")
+}
+
+
+model Synaxar {
+  id String @id @default(cuid())
+  day Int
+  month CopticMonths
+  isSaint Boolean? @default(false)
+  isMartyr Boolean? @default(false)
+  isOccasion Boolean? @default(false)
+  isMain Boolean? @default(false)
+  name_ar String
+  name_en String
+  name_co String?
+  description_ar String
+  description_en String
+  description_co String?
+  image String?
+  slug String
+  postImage String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([slug])
+  @@map("synaxar_data")
 }
