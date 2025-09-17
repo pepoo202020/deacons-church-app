@@ -3,5 +3,8 @@
   "seasonSheetTitle": "Current church occasion",
   "verseSheetTitle": "Verse of the day",
   "occasionTitleEx": "Nowruz",
-  "occasionSubTitleEx": "Spiritual follow-up of Nayrouz and the Coptic New Year"
+  "occasionSubTitleEx": "Spiritual follow-up of Nayrouz and the Coptic New Year",
+
+  "calendarTitle": "Liturgical Calendar",
+  "calendarSubtitle": "Professional Coptic Orthodox calendar with Synaxar management"
 }

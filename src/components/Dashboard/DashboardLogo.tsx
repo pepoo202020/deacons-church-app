@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-interface ILogoProps {
+interface IDashboardLogoProps {
   t: (key: string, options?: any) => string | object;
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
   variant?: "default" | "header" | "footer" | "sidebar" | "mobile";
@@ -13,7 +13,7 @@ interface ILogoProps {
   subtitleKey?: string;
 }
 
-const Logo = ({
+const DashboardLogo = ({
   t,
   size = "md",
   variant = "default",
@@ -23,7 +23,7 @@ const Logo = ({
   imageClassName,
   titleClassName,
   subtitleKey = "subtitle",
-}: ILogoProps) => {
+}: IDashboardLogoProps) => {
   // Enhanced size configurations
   const sizeConfig = {
     xs: {
@@ -176,7 +176,7 @@ const Logo = ({
     <div className={cn(currentVariant.container, currentSize.gap, className)}>
       <div className={cn("relative flex-shrink-0", imageClassName)}>
         <Image
-          src="/images/school_logo.png"
+          src="/images/dashboardLogo.png"
           alt="School Logo"
           width={currentSize.image.width}
           height={currentSize.image.height}
@@ -193,4 +193,4 @@ const Logo = ({
   );
 };
 
-export default Logo;
+export default DashboardLogo;
