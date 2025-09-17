@@ -133,3 +133,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+.dailyVerses.bibleVerse {
+  margin-top: 0.5em;
+  text-align: start;
+  font-size: small;
+}
+
+.dailyVerses.bibleVerse a {
+  font-weight: bold;
+  color: orange;
+}

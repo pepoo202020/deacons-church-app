@@ -6,7 +6,7 @@ import { useState } from "react";
 import SeasonDialog from "./SeasonDialog";
 
 const Header = () => {
-  const { t } = useLanguage();
+  const { t, isRTL, language } = useLanguage();
   const [seasonDialogOpen, setSeasonDialogOpen] = useState<boolean>(false);
   return (
     <>
@@ -16,20 +16,23 @@ const Header = () => {
           <Logo t={t} variant="header" />
         </div>
         <div
-          className="absolute inset-0 bg-yellow-400 w-10 h-9  cursor-pointer flex items-center justify-start px-1"
+          className="absolute inset-0 bg-yellow-400 w-10 h-9  cursor-pointer"
           style={{
             clipPath: "polygon(100% 0, 0 0, 100% 100%)",
           }}
           onClick={() => setSeasonDialogOpen(true)}
         >
-          <div>
-            <IoMdInformation color="white" />
+          <div className="relative">
+            <IoMdInformation color="white" className="absolute inset-1" />
           </div>
         </div>
       </div>
       <SeasonDialog
         onOpenChange={(value) => setSeasonDialogOpen(value)}
         open={seasonDialogOpen}
+        isRtl={isRTL}
+        t={t}
+        language={language}
       />
     </>
   );
